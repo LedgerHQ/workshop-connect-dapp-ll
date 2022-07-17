@@ -1,13 +1,13 @@
 export const domain = {
-  name: process.env.NEXT_PUBLIC_TYPEDDATADOMAIN_NAME,
-  version: process.env.NEXT_PUBLIC_TYPEDDATADOMAIN_VERSION,
-  verifyingContract: process.env.NEXT_PUBLIC_TYPEDDATADOMAIN_VOUCHER_CONTRACT,
-  chainId: parseInt(process.env.NEXT_PUBLIC_TYPEDDATADOMAIN_CHAINID),
+  name: "ChatBox",
+  version: "1",
+  verifyingContract: "0x3B3818C2b8B29c3395589DE3a91bFb391ce5698B",
+  chainId: 5,
 };
 
 export const types = {
-  postMessage: [
-    { name: "content", type: "string" },
-    { name: "owner", type: "address" },
-  ],
+  Message: [
+    { name: 'from', type: 'address' },
+    { name: 'contents', type: 'string' }
+  ]
 };
