@@ -5,19 +5,20 @@ const WRITE_ASYNC_OVERRIDES_GASLIMIT = { gasLimit: 250_000 };
 
 /* STEP #2
     TODO: Develop the logic to sign typed data with connected account
-    TIPS: There is one hook from the wagmi documentation that allow you to do a 712 signature
+    TIPS: There is a hook from the wagmi documentation that allows you to do a 712 signature
     Link of the documentation: https://wagmi.sh/docs/getting-started
 */
 
 /* STEP #3
     TODO: Develop the logic to post a message
-    TIPS: There is one hook from the wagmi documentation that allow you to call a write method
+    TIPS: There is a hook from the wagmi documentation that allows you to call a write method
     Link of the documentation: https://wagmi.sh/docs/getting-started
 */
-const useFetchMessages = () => {
+const usePostMessage = () => {
+  // Implement the logic to sign typed data with connected account
 
   const postMessage = (message: string, author: string) => {
-    // Implement me :) 
+    // Implement me :)
   };
 
   return {
@@ -30,4 +31,4 @@ const useFetchMessages = () => {
   };
 };
 
-export default useFetchMessages;
+export default usePostMessage;
