@@ -1,54 +1,20 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { Flex, Text, Link } from "@ledgerhq/react-ui";
 import { Message } from "../utils/types";
 import getHashPreview from "../utils/getHashPreview";
 import getDateDifference from "../utils/getDateDifference";
-import { useSendTransaction, useSignMessage, useAccount } from "wagmi";
-import { ethers } from "ethers";
-import likeMessage from "../api/likeMessage";
-import Snackbar from "./Snackbar";
 import useEtherscanURL from "../utils/useEtherscanURL";
+import useLikeMessage from "../api/useLikeMessage";
+import useRewardAuthor from "../api/useRewardAuthor";
 
 const MessageCard = ({ message }: { message: Message }) => {
   const now = useMemo(() => new Date(), []);
   const etherscanURL = useEtherscanURL();
-  const { address } = useAccount();
-  const [txHash, setTxHash] = useState("");
-  const { data, sendTransaction } = useSendTransaction({
-    request: {
-      to: message.owner,
-      value: ethers.BigNumber.from("1000000000000000"), // 0.001 ETH
-    },
-  });
-  const { signMessage } = useSignMessage({
-    onSuccess: async (signature, variables) => {
-      try {
-        const tx = await likeMessage(
-          `${variables.message}`,
-          signature,
-          address,
-          message.id
-        );
+  const { likeMessage } = useLikeMessage();
+  const { rewardAuthor } = useRewardAuthor();
 
-        if (tx.error) throw new Error("Something goes wrong");
-
-        setTxHash(tx.data.hash);
-      } catch (e) {
-        throw e;
-      }
-    },
-  });
-
-  useEffect(() => {
-    if (data?.hash) setTxHash(data.hash);
-  }, [data]);
-
-  const handleTips = () => sendTransaction();
-
-  const handleLike = () =>
-    signMessage({
-      message: `I like the post #${message.id} posted by ${message.owner}`,
-    });
+  const handleTips = () => rewardAuthor(message.author);
+  const handleLike = () => likeMessage(message.id, message.author);
 
   return (
     <Flex
@@ -59,15 +25,15 @@ const MessageCard = ({ message }: { message: Message }) => {
     >
       <Flex justifyContent="space-between" columnGap="0.25rem">
         <Link
-          href={`${etherscanURL}/address/${message.owner}`}
+          href={`${etherscanURL}/address/${message.author}`}
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <Text variant="small">{getHashPreview(message.owner)}</Text>
+          <Text variant="small">{getHashPreview(message.author)}</Text>
         </Link>
         <Text variant="extraSmall">
           {getDateDifference(
-            new Date(parseInt(message.createdAt, 10) * 1_000),
+            new Date(parseInt(message.timestamp.toString(), 10) * 1_000),
             now
           )}
         </Text>
@@ -81,7 +47,7 @@ const MessageCard = ({ message }: { message: Message }) => {
           style={{ cursor: "pointer" }}
           onClick={handleLike}
         >
-          ❤️ {message.likes}
+          ❤️ {message.likes.toString()}
         </Text>
         <Text
           variant="small"
@@ -91,9 +57,6 @@ const MessageCard = ({ message }: { message: Message }) => {
           💰 tips
         </Text>
       </Flex>
-      {!!txHash.length ? (
-        <Snackbar txHash={txHash} onClose={() => setTxHash("")} />
-      ) : null}
     </Flex>
   );
 };

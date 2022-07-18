@@ -12,4 +12,5 @@ function getDateDifference(fromDate, toDate) {
   diff = Math.floor((fromDate - toDate) / (1000 * 60 * 60));
   return rtf.format(diff, "hours");
 }
+
 export default getDateDifference;

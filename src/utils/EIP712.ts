@@ -6,7 +6,7 @@ export const domain = {
 };
 
 export const types = {
-  Message: [
+  sendMessage: [
     { name: 'from', type: 'address' },
     { name: 'contents', type: 'string' }
   ]
