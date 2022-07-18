@@ -4,7 +4,7 @@ import { abi } from "../utils/contract.json";
 
 const WRITE_ASYNC_OVERRIDES_GASLIMIT = { gasLimit: 250_000 };
 
-const useFetchMessages = () => {
+const useLikeMessage = () => {
   const { data, isError, isLoading, isSuccess, error, writeAsync } = useContractWrite({
     addressOrName: domain.verifyingContract,
     contractInterface: abi,
@@ -36,4 +36,4 @@ const useFetchMessages = () => {
   };
 };
 
-export default useFetchMessages;
+export default useLikeMessage;

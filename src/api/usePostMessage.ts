@@ -4,7 +4,7 @@ import { domain, types } from "../utils/EIP712";
 
 const WRITE_ASYNC_OVERRIDES_GASLIMIT = { gasLimit: 250_000 };
 
-const useFetchMessages = () => {
+const usePostMessage = () => {
   const { data, isError, isLoading, isSuccess, error, writeAsync } = useContractWrite({
     addressOrName: domain.verifyingContract,
     contractInterface: abi,
@@ -36,4 +36,4 @@ const useFetchMessages = () => {
   };
 };
 
-export default useFetchMessages;
+export default usePostMessage;

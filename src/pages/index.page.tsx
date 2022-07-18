@@ -6,9 +6,10 @@ import { ethers } from "ethers";
 
 const Home = () => {
   const { data: messages } = useFetchMessages();
-  const filteredMessages = messages.filter(
-    (message) => message.author !== ethers.constants.AddressZero
-  );
+  const filteredMessages =
+    messages?.filter(
+      (message) => message.author !== ethers.constants.AddressZero
+    ) ?? [];
 
   return (
     <main style={{ maxWidth: "40rem", paddingTop: "3rem" }}>
