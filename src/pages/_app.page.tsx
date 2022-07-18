@@ -2,8 +2,22 @@ import { Flex, InfiniteLoader, StyleProvider } from "@ledgerhq/react-ui";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
-import WAGMIProvider from "../utils/WAGMIProvider";
+import { allChains, configureChains, createClient, WagmiConfig } from "wagmi";
+import { InjectedConnector } from "wagmi/connectors/injected";
+import { publicProvider } from "wagmi/providers/public";
 import "../../styles/globals.css";
+
+const { chains, provider } = configureChains(allChains, [publicProvider()]);
+
+const wagmiClient = createClient({
+  autoConnect: true,
+  connectors: [new InjectedConnector({ chains })],
+  provider,
+});
+
+const WAGMIProvider = ({ children }: { children: JSX.Element }) => (
+  <WagmiConfig client={wagmiClient}>{children}</WagmiConfig>
+);
 
 /*
  ** Next.js uses the App component to initialize pages. You can override it and control the page initialization.

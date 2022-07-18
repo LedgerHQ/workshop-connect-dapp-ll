@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Flex, Text, Link } from "@ledgerhq/react-ui";
-import { Message } from "../utils/getMessages";
+import { Message } from "../utils/types";
 import getHashPreview from "../utils/getHashPreview";
 import getDateDifference from "../utils/getDateDifference";
 import { useSendTransaction, useSignMessage, useAccount } from "wagmi";
