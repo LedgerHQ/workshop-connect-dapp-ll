@@ -1,43 +1,17 @@
 import { useState } from "react";
-import { useSignTypedData } from "wagmi";
 import { useAccount } from "wagmi";
-import { domain, types } from "../utils/EIP712";
-import postMessage from "../api/postMessage";
 import { Flex, Text } from "@ledgerhq/react-ui";
 import ArrowTopMedium from "@ledgerhq/icons-ui/react/ArrowTopMedium";
 import styled from "styled-components";
-import Snackbar from "./Snackbar";
+import usePostMessage from "../api/usePostMessage";
 
 const ChatBox = () => {
   const [message, setMessage] = useState("");
-  const [txHash, setTxHash] = useState("");
-  const { isError, isSuccess, signTypedData } = useSignTypedData({
-    onSuccess: async (data) => {
-      const tx = await postMessage({ owner: address, content: message }, data);
-
-      if (tx.error) throw new Error("Something goes wrong");
-      setTxHash(tx.data.hash);
-      setMessage("");
-    },
-    onError: (error) => {
-      console.error(error);
-    },
-  });
-
   const { address, isConnected } = useAccount();
-  const handleSubmit = async () => {
-    const value = { content: message, owner: address };
 
-    try {
-      await signTypedData({
-        domain,
-        types,
-        value,
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  const { isSuccess, isError, postMessage } = usePostMessage();
+
+  const handleSubmit = async () => postMessage(message, address);
 
   const QrCodeButton = styled.button`
     display: flex;
@@ -95,9 +69,6 @@ const ChatBox = () => {
         <Text variant="paragraph" style={{ color: "hsla(359, 84%, 70%, 1)" }}>
           Internal error
         </Text>
-      ) : null}
-      {!!txHash.length ? (
-        <Snackbar txHash={txHash} onClose={() => setTxHash("")} />
       ) : null}
     </Flex>
   );
