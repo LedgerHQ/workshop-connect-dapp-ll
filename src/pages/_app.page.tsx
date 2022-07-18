@@ -1,17 +1,21 @@
+import { IFrameEthereumConnector } from "@ledgerhq/ledger-live-wagmi-connector";
 import { Flex, InfiniteLoader, StyleProvider } from "@ledgerhq/react-ui";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
-import Header from "../components/Header";
 import { allChains, configureChains, createClient, WagmiConfig } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { publicProvider } from "wagmi/providers/public";
 import "../../styles/globals.css";
+import Header from "../components/Header";
 
 const { chains, provider } = configureChains(allChains, [publicProvider()]);
 
 const wagmiClient = createClient({
   autoConnect: true,
-  connectors: [new InjectedConnector({ chains })],
+  connectors: [
+    new IFrameEthereumConnector({ chains, options: {} }),
+    new InjectedConnector({ chains }),
+  ],
   provider,
 });
 

@@ -764,6 +764,22 @@
   resolved "https://registry.yarnpkg.com/@ledgerhq/icons-ui/-/icons-ui-0.2.5.tgz#0e851616bb8b9310a0fb0489536a32f6f564eb0e"
   integrity sha512-8pE4NWsI+7UEvi/cJW/qFvBaSpvi0nFaqDa8/e4LpP7pPiuNOmfz2rUcCq4Z7sbs7BKBVz4i4VX/nhzSFbaZzg==
 
+"@ledgerhq/iframe-provider@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@ledgerhq/iframe-provider/-/iframe-provider-0.4.2.tgz#2b63892bb3ab9a0719d2b00488be18b176ad6b7e"
+  integrity sha512-RbdwvQow/ITLk0TLb6c3M7y8IyjopIGXhhuUEMjqTU6PZhAL9Gl7TzH8INit9x9cOeG2WCuV+ZbHQ2oWsLfJ+A==
+  dependencies:
+    eventemitter3 "^4.0.0"
+
+"@ledgerhq/ledger-live-wagmi-connector@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@ledgerhq/ledger-live-wagmi-connector/-/ledger-live-wagmi-connector-0.1.1.tgz#f2c5b27ff60f8e3694f4519aca5c99b7e0a0a64c"
+  integrity sha512-8ncaBKZ2aJAg6Mywksv9OlcpqeXLDgpuYpfHMPu8k+/dy75bn3ZdUi12IalN4SeykjjA8YKn/+lufdtbMP6z9w==
+  dependencies:
+    "@ledgerhq/iframe-provider" "^0.4.2"
+    ethers "^5.6.9"
+    wagmi "^0.5.5"
+
 "@ledgerhq/react-ui@^0.7.8":
   version "0.7.8"
   resolved "https://registry.yarnpkg.com/@ledgerhq/react-ui/-/react-ui-0.7.8.tgz#0569a3bfeab4e337f5c597c36ffd600ea1ca94bf"
@@ -2645,7 +2661,7 @@ ethjs-util@0.1.6, ethjs-util@^0.1.3:
     is-hex-prefixed "1.0.0"
     strip-hex-prefix "1.0.0"
 
-eventemitter3@4.0.7, eventemitter3@^4.0.7:
+eventemitter3@4.0.7, eventemitter3@^4.0.0, eventemitter3@^4.0.7:
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-4.0.7.tgz#2de9b68f6528d5644ef5c59526a1b4a07306169f"
   integrity sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==

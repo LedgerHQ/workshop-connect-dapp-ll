@@ -12,6 +12,7 @@
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@ledgerhq/icons-ui": "^0.2.5",
+    "@ledgerhq/ledger-live-wagmi-connector": "^0.1.1",
     "@ledgerhq/react-ui": "^0.7.8",
     "@mui/material": "^5.8.7",
     "ethers": "^5.6.9",

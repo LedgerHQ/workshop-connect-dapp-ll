@@ -71,6 +71,15 @@ const Connector = () => {
   return (
     <Flex columnGap={2}>
       {connectors.map((connector) => {
+        /**
+         * Don't display the Ledger Live connector since users are automatically
+         * connected inside the Ledger Live wallet and can't connect to it
+         * outisde the apllication (i.e: in a browser)
+         */
+        if (connector.id === "ledgerLive") {
+          return;
+        }
+
         return (
           <ConnectorButton
             key={connector.id}
