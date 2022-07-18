@@ -44,17 +44,67 @@ You should now be able to log in the DApp on your browser with Metamask.
 
 Let's now implement the missing functionalities of this DApp.
 
-### Fetch the messages
+The next steps will allow you to add basic and common functionalities like signing typed data, signing a message and sending a transaction.
 
-### Do the 712 signature
+Don't hesitate to test your DApp in your browser throughout the steps to make sure everything works fine.
 
-### Post a message
+### Step #1: Fetch the messages
 
-### Do the 191 signature
+First, let's develop the logic to fetch the last 10 messages.
 
-### Like a message
+This should be implemented in the `useFetchMessages` custom hook under `src/api/useFetchMessages.ts`.
 
-### Tips an author with a transaction
+There is a hook from the [wagmi documentation](https://wagmi.sh/docs/getting-started) that allows you to call a read-only method.
+
+Don't hesitate to have a look at the contract abi available in `src/utils/contract.json` to figure out what contract method to call.
+
+Once this is implemented, your DApp should be able to fetch a couple of pre-existing messages.
+
+### Step #2: Sign an EIP-712 typed data (a user message)
+
+Now that we can fetch the existing messages, let's add new messages to the list!
+
+A message is a typed data (cf. [EIP-712](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-712.md)) that will be signed by it's author.
+
+The first step is then to develop the logic to sign typed data with the connected account.
+
+There is a hook from the [wagmi documentation](https://wagmi.sh/docs/getting-started) that allows you to do an EIP-712 signature.
+
+### Step #3: Post a message
+
+Now that we have a proper message, let's send our message to the smart contract.
+
+Sending our message to the smart contract consists of writing data to our smart contract.
+
+There is a hook from the [wagmi documentation](https://wagmi.sh/docs/getting-started) that allows you to call a write method.
+
+### Step #4: Sign an EIP-191 message
+
+Let's allow our users to like each others posts. Liking a post consists of a user signing a message (cf. [EIP-191](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-191.md)) and then calling a method of the smart contract.
+
+It's quite similar to what we did above to create a post, the difference behing that here the user will sign an EPI-191 message instead of an EIP-712 typed data.
+
+The message to sign is the following:
+
+```js
+`I like the post #${id} posted by ${author}`;
+```
+
+There is a hook from the [wagmi documentation](https://wagmi.sh/docs/getting-started) that allows you to sign a message.
+
+### Step #5: Like a message
+
+Once the message is sucessfully signed by the user, let's actually like the message by calling a method of the smart contract.
+
+This step is verry similar to Step #3 where we posted a message, the main difference behing the method to call on the smart contract (and eventually it's arguments).
+
+### Step #6: Tips an author with a transaction
+
+The last step consists of tipping an author to thank him for his great contribution.
+
+Technically, this means sending a transaction to the author's address.
+
+As always, there is a hook from the [wagmi documentation](https://wagmi.sh/docs/getting-started) that allows you to send a transaction.
 
 ## Let's add this DApp to Ledger Live
 
@@ -161,6 +211,8 @@ For more info on the _Manifest_ file, head over to the [Developer Portal](https:
 
 ## Next steps
 
+Keep in mind that the little test DApp that we created for this workshop is actually highly inneficient. For example, fetching the messages by dirrectly calling a method on the smart contract might not be the best way to go. You could use an API in between your DApp and the associated smart contract, like [The Graph](https://thegraph.com/en/) to more easilly access the relevant data. Same thing for the whole post creation and liking.
+
 If you are interested in learning more about building and integrating on top of Ledger Live, check out the following resources:
 
 [Nano App](https://developers.ledger.com/docs/nano-app/start-here/) to get your blockchain supported on Nano S/X/S Plus
@@ -170,12 +222,3 @@ If you are interested in learning more about building and integrating on top of 
 [Live App](https://developers.ledger.com/docs/live-app/start-here/) to turn your DApp or regular app into a Live App in Ledger Live
 
 [Connect your app](https://developers.ledger.com/docs/transport/overview/) to support a Nano on your desktop/web app
-
----
-
-TODO:
-
-- create base codebase
-- write proper README
-- rebase commits (remove commits history)
-- make public
