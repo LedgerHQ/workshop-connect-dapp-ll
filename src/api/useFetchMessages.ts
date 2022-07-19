@@ -3,12 +3,12 @@ import { domain } from "../utils/EIP712";
 
 /* STEP #1
     TODO: Develop the logic to fetch the last 10 messages
-    TIPS: There is one hook from the wagmi documentation that allow you to call a read-only method
+    TIPS: There is a hook from the wagmi documentation that allows you to call a read-only method
     Link of the documentation: https://wagmi.sh/docs/getting-started
 */
 const useFetchMessages = () => {
-    // Connect the variables below
-    return { data: null, isError: null, isLoading: false, refetch: () => { } };
+  // Connect the variables below
+  return { data: null, isError: null, isLoading: false, refetch: () => {} };
 };
 
 export default useFetchMessages;
