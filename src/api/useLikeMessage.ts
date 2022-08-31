@@ -14,7 +14,7 @@ const WRITE_ASYNC_OVERRIDES_GASLIMIT = { gasLimit: 250_000 };
     TIPS: There is a hook from the wagmi documentation that allows you to call a write method
     Link of the documentation: https://wagmi.sh/docs/getting-started
 */
-const useFetchMessages = () => {
+const useLikeMessage = () => {
   const likeMessage = async (id: string, author: string) => {
     // Implement me :)
   };
@@ -29,4 +29,4 @@ const useFetchMessages = () => {
   };
 };
 
-export default useFetchMessages;
+export default useLikeMessage;
