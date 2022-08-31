@@ -15,7 +15,7 @@ const Home = () => {
       <ChatBox />
       {filteredMessages.length ? (
         <Flex flexDirection="column" rowGap="1rem" mt="2rem">
-          {filteredMessages?.map((message) => (
+          {filteredMessages.map((message) => (
             <MessageCard key={message.id.toString()} message={message} />
           ))}
         </Flex>

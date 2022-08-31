@@ -8,7 +8,7 @@ import { domain } from "../utils/EIP712";
 */
 const useFetchMessages = () => {
   // Connect the variables below
-  return { data: null, isError: null, isLoading: false, refetch: () => {} };
+  return { data: [], isError: null, isLoading: false, refetch: () => { } };
 };
 
 export default useFetchMessages;
