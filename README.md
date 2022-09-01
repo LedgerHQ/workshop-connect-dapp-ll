@@ -34,20 +34,12 @@ First thing first, install the project's dependencies.
 
 ```sh
 $ yarn
-
-# or
-
-$ npm install
 ```
 
 You should now be abble to start the DApp and open it on your browser. To do so, simply run:
 
 ```sh
 $ yarn dev
-
-# or
-
-$ npm run dev
 ```
 
 This should start the app (on http://localhost:3000 by default) and print the address on your terminal:
@@ -154,10 +146,6 @@ Let's add this dependency to our project
 
 ```sh
 $ yarn add @ledgerhq/ledger-live-wagmi-connector
-
-# or
-
-$ npm install @ledgerhq/ledger-live-wagmi-connector
 ```
 
 Now you just need to add a new `IFrameEthereumConnector` to the `connectors` array of your Wagmi client in `src/pages/_app.page.tsx`.
