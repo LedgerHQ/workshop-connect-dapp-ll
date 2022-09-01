@@ -231,7 +231,7 @@ To load your Live App locally, [unlock the Developer mode](https://developers.le
 
 For more info on the _Manifest_ file, head over to the [Developer Portal](https://developers.ledger.com/docs/dapp/manifest/)
 
-To test everything, make sur you have a Goerli Testen account available in Ledger Live (to enable testnet networks, head over to `settings` -> `experimental features` and turn on the `developer mode` setting).
+To test everything, make sur you have a Goerli Testnet account available in Ledger Live (to enable testnet networks, head over to `settings` -> `experimental features` and turn on the `developer mode` setting).
 
 After this step, you should be able to use your DApp normally within Ledger Live context, and also on a browser environment with Metamask.
 
