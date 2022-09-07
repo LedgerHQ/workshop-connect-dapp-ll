@@ -1,5 +1,7 @@
-import { abi } from "../utils/contract.json";
+import artifacts from "../utils/contract.json";
 import { domain } from "../utils/EIP712";
+import { useEffect } from 'react';
+import { useContractRead } from "wagmi";
 
 /* STEP #1
     TODO: Develop the logic to fetch the last 10 messages

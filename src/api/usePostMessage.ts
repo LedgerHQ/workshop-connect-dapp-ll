@@ -1,4 +1,4 @@
-import { abi } from "../utils/contract.json";
+import artifacts from "../utils/contract.json";
 import { domain, types } from "../utils/EIP712";
 
 const WRITE_ASYNC_OVERRIDES_GASLIMIT = { gasLimit: 250_000 };
