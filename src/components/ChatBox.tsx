@@ -5,6 +5,24 @@ import ArrowTopMedium from "@ledgerhq/icons-ui/react/ArrowTopMedium";
 import styled from "styled-components";
 import usePostMessage from "../api/usePostMessage";
 
+const QrCodeButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border-width: 0;
+  color: ${(p) => p.theme.colors.palette.neutral.c00};
+  background-color: ${(p) => p.theme.colors.palette.neutral.c100};
+  cursor: pointer;
+  &:disabled {
+    background-color: ${(p) => p.theme.colors.palette.neutral.c30};
+    color: ${(p) => p.theme.colors.palette.neutral.c50};
+    cursor: unset;
+  }
+`;
+
 const ChatBox = () => {
   const [message, setMessage] = useState("");
   const { address, isConnected } = useAccount();
@@ -12,24 +30,6 @@ const ChatBox = () => {
   const { isSuccess, isError, postMessage } = usePostMessage();
 
   const handleSubmit = async () => postMessage(message, address);
-
-  const QrCodeButton = styled.button`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border-width: 0;
-    color: ${(p) => p.theme.colors.palette.neutral.c00};
-    background-color: ${(p) => p.theme.colors.palette.neutral.c100};
-    cursor: pointer;
-    &:disabled {
-      background-color: ${(p) => p.theme.colors.palette.neutral.c30};
-      color: ${(p) => p.theme.colors.palette.neutral.c50};
-      cursor: unset;
-    }
-  `;
 
   return (
     <Flex flexDirection="column" rowGap="0.25rem">
