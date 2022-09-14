@@ -12,7 +12,7 @@ const Header = () => {
       justifyContent="space-between"
       style={{ borderBottom: "1px solid grey" }}
     >
-      <Text variant="h1">Ledger guest book</Text>
+      <Text variant="h1">Ledger Guestbook</Text>
       <Connector />
     </Flex>
   );

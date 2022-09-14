@@ -13,7 +13,7 @@ const MessageCard = ({ message }: { message: Message }) => {
   const { likeMessage } = useLikeMessage();
   const { rewardAuthor } = useRewardAuthor();
 
-  const handleTips = () => rewardAuthor(message.author);
+  const handleTip = () => rewardAuthor(message.author);
   const handleLike = () => likeMessage(message.id, message.author);
 
   return (
@@ -52,7 +52,7 @@ const MessageCard = ({ message }: { message: Message }) => {
         <Text
           variant="small"
           style={{ cursor: "pointer" }}
-          onClick={handleTips}
+          onClick={handleTip}
         >
           💰 tips
         </Text>

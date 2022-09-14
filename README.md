@@ -20,7 +20,7 @@
 
 In this workshop you will build an Ethereum DApp using [wagmi](https://github.com/tmm/wagmi) and integrate it in Ledger Live.
 
-This DApp will allow a user to write a message in _Ledger guest book_, like an already existing messages and even tip the author of a message.
+This DApp will allow a user to write a message in _Ledger Guestbook_, like an already existing messages and even tip the author of a message.
 
 ## Prerequisites
 
@@ -116,7 +116,7 @@ This step is verry similar to Step #3 where you posted a message, the main diffe
 
 This should also be implemented in the `useLikeMessage` custom hook under `src/api/useLikeMessage.ts`.
 
-### Step #6: Tips an author with a transaction
+### Step #6: Tip an author with a transaction
 
 The last step consists of tipping an author to thank him for his great contribution.
 

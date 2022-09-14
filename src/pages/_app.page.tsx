@@ -21,7 +21,7 @@ const WAGMIProvider = ({ children }: { children: JSX.Element }) => (
 
 /*
  ** Next.js uses the App component to initialize pages. You can override it and control the page initialization.
- ** We need it to inject our providers on each pages.
+ ** You need it to inject the providers on each page.
  */
 const CustomApp = ({ Component, pageProps }: AppProps) => {
   const [mounted, setMounted] = useState(false);
