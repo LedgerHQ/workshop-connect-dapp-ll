@@ -1,13 +1,13 @@
 import { useSignMessage, useContractWrite } from 'wagmi'
 import { domain } from "../utils/EIP712";
-import { abi } from "../utils/contract.json";
+import artifacts from "../utils/contract.json";
 
 const WRITE_ASYNC_OVERRIDES_GASLIMIT = { gasLimit: 250_000 };
 
 const useLikeMessage = () => {
   const { data, isError, isLoading, isSuccess, error, writeAsync } = useContractWrite({
     addressOrName: domain.verifyingContract,
-    contractInterface: abi,
+    contractInterface: artifacts.abi,
     functionName: 'likeMessage',
   });
   const { error: erroSign, isError: isSignError, isLoading: isSignLoading, isSuccess: isSignSuccess, signMessageAsync } = useSignMessage();
