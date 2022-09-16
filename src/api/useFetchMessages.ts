@@ -10,8 +10,8 @@ import { useContractRead } from "wagmi";
 */
 const useFetchMessages = () => {
 
-  // Connect the variables below
-  
+  // Connect the variables here
+
   return { data: [], isError: null, isLoading: false };
 };
 
