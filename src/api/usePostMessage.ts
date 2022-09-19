@@ -1,3 +1,4 @@
+import { useContractWrite, useSignTypedData } from "wagmi";
 import artifacts from "../utils/contract.json";
 import { domain, types } from "../utils/EIP712";
 
@@ -15,19 +16,34 @@ const WRITE_ASYNC_OVERRIDES_GASLIMIT = { gasLimit: 250_000 };
     Link of the documentation: https://wagmi.sh/docs/getting-started
 */
 const usePostMessage = () => {
-  // Implement the logic to sign typed data with connected account
+  const { data, isError, isLoading, isSuccess, error, writeAsync } = useContractWrite({
+    addressOrName: domain.verifyingContract,
+    contractInterface: artifacts.abi,
+    functionName: 'sendMessage',
+  });
+  const { isError: is712Error, isSuccess: is712Success, error: error712, signTypedDataAsync } = useSignTypedData();
 
-  const postMessage = (message: string, author: string) => {
-    // Implement me :)
+  const postMessage = async (message: string, author: string) => {
+    try {
+      const value = { contents: message, from: author };
+      const signature = await signTypedDataAsync({ value, domain, types });
+      const tx = await writeAsync({
+        args: [message, signature],
+        overrides: WRITE_ASYNC_OVERRIDES_GASLIMIT,
+      });
+      console.log(`tx hash: ${tx.hash}`);
+    } catch (e) {
+      throw new Error(e);
+    }
   };
 
   return {
     postMessage,
-    data: null,
-    error: null,
-    isError: null,
-    isLoading: null,
-    isSuccess: null,
+    data,
+    error: error || error712,
+    isError: isError || is712Error,
+    isLoading: isLoading || isLoading,
+    isSuccess: isSuccess && is712Success
   };
 };
 

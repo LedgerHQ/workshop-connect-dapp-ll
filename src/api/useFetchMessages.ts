@@ -9,8 +9,18 @@ import { useContractRead } from "wagmi";
     Link of the documentation: https://wagmi.sh/docs/getting-started
 */
 const useFetchMessages = () => {
-  // Connect the variables here
-  return { data: [], isError: null, isLoading: false };
+  const {data, refetch, isError, isLoading  } = useContractRead({
+    addressOrName: domain.verifyingContract,
+    contractInterface: artifacts.abi,
+    functionName: "getLast10Messages",
+    enabled: false
+  });
+
+  useEffect(() => {
+      refetch();
+  }, [])
+
+  return { data, isError, isLoading, refetch };
 };
 
 export default useFetchMessages;

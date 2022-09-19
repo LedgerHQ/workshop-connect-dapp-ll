@@ -1,3 +1,4 @@
+import { IFrameEthereumConnector } from "@ledgerhq/ledger-live-wagmi-connector";
 import { Flex, InfiniteLoader, StyleProvider } from "@ledgerhq/react-ui";
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
@@ -11,7 +12,10 @@ const { chains, provider } = configureChains(allChains, [publicProvider()]);
 
 const wagmiClient = createClient({
   autoConnect: true,
-  connectors: [new InjectedConnector({ chains })],
+  connectors: [
+    new IFrameEthereumConnector({ chains, options: {} }),
+    new InjectedConnector({ chains }),
+  ],
   provider,
 });
 

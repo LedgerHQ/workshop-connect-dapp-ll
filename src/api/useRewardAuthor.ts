@@ -1,3 +1,4 @@
+import { useSendTransaction } from 'wagmi';
 import { ethers } from "ethers";
 
 /* STEP #6
@@ -6,17 +7,20 @@ import { ethers } from "ethers";
     Link of the documentation: https://wagmi.sh/docs/getting-started
 */
 const useRewardAuthor = () => {
-  const rewardAuthor = async (author: string) => {
-    // Implement me :)
-  };
-  return {
-    data: null,
-    isError: false,
-    isLoading: false,
-    isSuccess: false,
-    isIdle: false,
-    rewardAuthor,
-  };
+  const { data, isIdle, isError, isLoading, isSuccess, sendTransactionAsync } =
+  useSendTransaction()
+
+const rewardAuthor = async (author: string) => {
+  const tx = await sendTransactionAsync({
+      request: {
+          to: author,
+          value: ethers.BigNumber.from('1000000000000000'), // 0.001 ETH
+      }
+  })
+  console.log(`tx hash: ${tx.hash}`);
+}
+
+return { data, isError, isLoading, isSuccess, isIdle, rewardAuthor };
 };
 
 export default useRewardAuthor;
