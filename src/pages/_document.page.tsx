@@ -2,10 +2,10 @@ import Document, { Head, Html, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
 /*
- ** This file is only rendered on the server. We need it to
+ ** This file is only rendered on the server. We need it to:
  ** - Manage the server-side rendering with styled-components
- ** - Importing the global style once
- ** For information: https://nextjs.org/docs/advanced-features/custom-document
+ ** - Import the global style once
+ ** For more information: https://nextjs.org/docs/advanced-features/custom-document
  */
 export default class MyDocument extends Document {
   render() {

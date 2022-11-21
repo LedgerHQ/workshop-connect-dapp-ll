@@ -34,13 +34,13 @@ const ChatBox = () => {
   return (
     <Flex flexDirection="column" rowGap="0.25rem">
       <Text as="label" variant="large" htmlFor="message">
-        Save your thoughts
+        Write a message
       </Text>
       <Flex alignItems="center" columnGap="1rem" style={{ width: "100%" }}>
         <textarea
           id="message"
           name="message"
-          placeholder="what's up, bruh?"
+          placeholder="What's up, bruh?"
           style={{
             width: "100%",
             padding: "0.5rem",
