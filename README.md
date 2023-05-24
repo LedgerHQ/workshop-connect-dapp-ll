@@ -36,7 +36,7 @@ First thing first, install the project's dependencies.
 $ yarn
 ```
 
-You should now be abble to start the DApp and open it on your browser. To do so, simply run:
+You should now be able to start the DApp and open it on your browser. To do so, simply run:
 
 ```sh
 $ yarn dev
@@ -96,7 +96,7 @@ There is a hook from the [wagmi documentation](https://wagmi.sh/docs/getting-sta
 
 Let's allow our users to like each others posts. Liking a post consists of a user signing a message (cf. [EIP-191](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-191.md)) and then calling a method of the smart contract.
 
-It's quite similar to what you did above to create a post, the difference behing that here the user will sign an EIP-191 message instead of an EIP-712 typed data.
+It's quite similar to what you did above to create a post, the difference being that here the user will sign an EIP-191 message instead of an EIP-712 typed data.
 
 The message to sign is the following:
 
@@ -110,9 +110,9 @@ There is a hook from the [wagmi documentation](https://wagmi.sh/docs/getting-sta
 
 ### Step #5: Like a message
 
-Once the message is sucessfully signed by the user, let's actually share the fact that the associated post has been liked by a user by calling a method of the smart contract.
+Once the message is successfully signed by the user, let's actually share the fact that the associated post has been liked by a user by calling a method of the smart contract.
 
-This step is verry similar to Step #3 where you posted a message, the main difference behing the method to call on the smart contract (and eventually it's arguments).
+This step is very similar to Step #3 where you posted a message, the main difference being the method to call on the smart contract (and eventually it's arguments).
 
 This should also be implemented in the `useLikeMessage` custom hook under `src/api/useLikeMessage.ts`.
 
@@ -140,7 +140,7 @@ This can be done in 3 steps:
 
 The `@ledgerhq/ledger-live-wagmi-connector` is a connector for the popular [wagmi](https://github.com/tmm/wagmi) library built on top of the [@ledgerhq/iframe-provider](https://github.com/ledgerhq/iframe-provider).
 
-It can be used to initialize a wagmi client that will seemlessly manage the interaction of your DApp with the Ledger Live wallet.
+It can be used to initialize a wagmi client that will seamlessly manage the interaction of your DApp with the Ledger Live wallet.
 
 Let's add this dependency to our project
 
@@ -150,7 +150,7 @@ $ yarn add @ledgerhq/ledger-live-wagmi-connector
 
 Now you just need to add a new `IFrameEthereumConnector` to the `connectors` array of your Wagmi client in `src/pages/_app.page.tsx`.
 
-After this step, you should still be able to use your DApp normally on your browser with Metamask, but if you disconnect from the DApp (top righ corner), your should now see a drop down list with 2 options when you want to connect back in.
+After this step, you should still be able to use your DApp normally on your browser with Metamask, but if you disconnect from the DApp (top right corner), your should now see a drop down list with 2 options when you want to connect back in.
 
 You won't be able to connect within Ledger Live just yet, so let's see the next steps.
 
@@ -162,13 +162,13 @@ First, let's create a `isIframe` utils function that will return `true` if the a
 
 With this util function, we can now remove or hide the `Connector` component of the `Header` when the app is launched in Ledger Live.
 
-Similarrely, since the Ledger Live connector cannot be used outside of the Ledger Live context, there is no need to display it in the `Connector` component in the list of available connectors.
+Similarly, since the Ledger Live connector cannot be used outside of the Ledger Live context, there is no need to display it in the `Connector` component in the list of available connectors.
 
 After this step, you should still be able to use your DApp normally on your browser with Metamask, and this time you should only have one option to connect when your DApp is started in your browser, Metamask.
 
 ### Create a Manifest for your DApp
 
-Now that your DApp is ready to intract with Ledger Live, let's run it inside Ledger Live to test that everything works fine.
+Now that your DApp is ready to interact with Ledger Live, let's run it inside Ledger Live to test that everything works fine.
 
 To do so, you will need to create a _Manifest_ file.
 
@@ -231,13 +231,13 @@ To load your Live App locally, [unlock the Developer mode](https://developers.le
 
 For more info on the _Manifest_ file, head over to the [Developer Portal](https://developers.ledger.com/docs/dapp/manifest/)
 
-To test everything, make sur you have a Goerli Testnet account available in Ledger Live (to enable testnet networks, head over to `settings` -> `experimental features` and turn on the `developer mode` setting).
+To test everything, make sure you have a Goerli Testnet account available in Ledger Live (to enable testnet networks, head over to `settings` -> `experimental features` and turn on the `developer mode` setting).
 
 After this step, you should be able to use your DApp normally within Ledger Live context, and also on a browser environment with Metamask.
 
 ## Next steps
 
-Keep in mind that the little test DApp that we created for this workshop is actually highly inneficient. For example, fetching the messages by dirrectly calling a method on the smart contract might not be the best way to go. You could use an API in between your DApp and the associated smart contract, like [The Graph](https://thegraph.com/en/) to more easilly access the relevant data. Same thing for the whole post creation and liking.
+Keep in mind that the little test DApp that we created for this workshop is actually highly inefficient. For example, fetching the messages by directly calling a method on the smart contract might not be the best way to go. You could use an API in between your DApp and the associated smart contract, like [The Graph](https://thegraph.com/en/) to more easily access the relevant data. Same thing for the whole post creation and liking.
 
 If you are interested in learning more about building and integrating on top of Ledger Live, check out the following resources:
 
